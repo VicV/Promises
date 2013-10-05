@@ -16,7 +16,7 @@ public class PromiseListener<T> {
 	}
 
 	// If something fucks up and we wanna talk about it
-	public void failed(Throwable reason) {
+	public void failed(Exception reason) {
 
 	}
 
@@ -26,7 +26,7 @@ public class PromiseListener<T> {
 	}
 
 	// At this point we're just lazy, maybe I should just call this 'ended'
-	public void failedOrCancelled(Throwable reason) {
+	public void failedOrCancelled(Exception reason) {
 
 	}
 
