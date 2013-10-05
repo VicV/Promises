@@ -15,15 +15,16 @@ But, I just remember how it _works_. I don't remember their implementation at al
 
 basically what SHOULD happen is:
 
-Promise myPromise = new Promise<T>().add(new PromiseListener{
+        Promise myPromise = new Promise<T>().add(new PromiseListener{
 
-  @Override
-    succeeded(T returnable){
-    //dostuff
-  }
+          @Override
+            succeeded(T returnable){
+              //dostuff
+            }
+        }
 
 
-}
+        
 
 
 So... Here goes nothing.
