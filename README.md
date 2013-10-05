@@ -13,8 +13,13 @@ Luckily, in my last few weeks there I had to work with their implementation a bu
 
 But, I just remember how it _works_. I don't remember their implementation at all..
 
-Notes: I'm doing this mainly because at Kik, the implentation was far more beautiful than any others available. For people that aren't deep into java but do Android dev, this will be the easiest way for them to add promises. Plus, when the promise is an object, you get to have wayyy more fun. Passing around threads like candy? Yeah, think about it.
 
+###Why am I doing this?
+I'm doing this mainly because at Kik, the implentation was far more beautiful than any others available. For people that aren't deep into java but do Android dev, this will be the easiest way for them to add promises. Plus, when the promise is an object, you get to have wayyy more fun. Passing around threads like candy? Yeah, think about it.
+
+Also, since I stopped working at Kik, I nearly died not being able to use them again (mHacks was painful due to this). 
+
+And, I wanted to do a Java hack, a useful hack, (and I'm _realllly_ bad at java/android multithreading stuff so I want to learn).
 ###What I want it to do
 
 basically what SHOULD happen is:
