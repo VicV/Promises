@@ -35,3 +35,5 @@ Notes: I'm doing this mainly because at Kik, the implentation was far more beaut
 ##Progress
 
 Update 1: So far, I've created the general listener and an interface for promises. The first commit will be chunky because I didnt have wifi for a while.
+
+Update 2: So, the listener will look out for these events: Failed, Cancelled, (and failedOrCancelled for the lazy), and succeed. 
