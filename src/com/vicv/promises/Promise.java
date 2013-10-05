@@ -1,5 +1,7 @@
 package com.vicv.promises;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Promise<T> {
@@ -30,6 +32,9 @@ public class Promise<T> {
 
 	// Clear up the promisess!
 	private void finishPromise(int state, T returnable, Exception exception) {
+		
+		List<PromiseListener<T>> listeners = _allListeners;
+		
 		synchronized (_completionLock) {
 			if (!_complete) {
 				_allListeners.clear();
@@ -37,13 +42,14 @@ public class Promise<T> {
 				_exception = exception;
 				_complete = true;
 				_returnable = returnable;
-
-				for (PromiseListener<T> listener : _allListeners) {
-					reactToListener(listener, state);
-				}
 			} else {
 				return;
 			}
+		}
+		
+
+		for (PromiseListener<T> listener : listeners) {
+			reactToListener(listener, state);
 		}
 	}
 
