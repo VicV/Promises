@@ -13,7 +13,7 @@ public class Promise<T> {
 
 	// We're gonna strap listeners to every promise we make. So we can keep
 	// track of them here. So many threads!
-	private CopyOnWriteArrayList<PromiseListener<T>> _allListeners = new CopyOnWriteArrayList<PromiseListener<T>>();
+	private List<PromiseListener<T>> _allListeners = new ArrayList<PromiseListener<T>>();
 
 	// Tried to use a boolean? bleh. Creds to Jesse for teaching me this one.
 	private Object _completionLock = new Object();
@@ -33,7 +33,7 @@ public class Promise<T> {
 	// Clear up the promisess!
 	private void finishPromise(int state, T returnable, Exception exception) {
 		
-		List<PromiseListener<T>> listeners = _allListeners;
+		List<PromiseListener<T>> listeners = new ArrayList<>(_allListeners);
 		
 		synchronized (_completionLock) {
 			if (!_complete) {

@@ -7,6 +7,7 @@ public class PromiseTests {
 
 
 	public static void main(String[] args) {
+		
 		Promise<Integer> myPromise = new Promise<Integer>();
 		
 		myPromise.add(new PromiseListener<Integer>(){
@@ -14,13 +15,17 @@ public class PromiseTests {
 			public void succeeded(Integer returnable) {
 			
 				System.out.print(returnable);
-				super.succeeded(returnable);
 				
+				super.succeeded(returnable);
+			}
+			
+			@Override
+			public void failed() {
+				super.failed();
 			}
 		});
 		
 		lateAdder(5, 6, myPromise);
-		
 		
 	}
 	
@@ -28,8 +33,6 @@ public class PromiseTests {
 		
 		int d = a + b;
 		
-		System.out.print("adding");
-
 		c.finish(d);
 	}
 	
