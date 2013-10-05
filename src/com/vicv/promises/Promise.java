@@ -14,7 +14,7 @@ public class Promise<T> {
 	private CopyOnWriteArrayList<PromiseListener<T>> _allListeners = new CopyOnWriteArrayList<PromiseListener<T>>();
 
 	// Tried to use a boolean? bleh. Creds to Jesse for teaching me this one.
-	private Object _completeLock = new Object();
+	private Object _completionLock = new Object();
 
 	// The thing we give back!
 	private T _returnable;
@@ -30,21 +30,17 @@ public class Promise<T> {
 
 	// Clear up the promisess!
 	private void finishPromise(int state, T returnable, Exception exception) {
-		synchronized (_completeLock) {
+		synchronized (_completionLock) {
 			if (!_complete) {
+				_allListeners.clear();
+				_state = state;
+				_exception = exception;
+				_complete = true;
+				_returnable = returnable;
 
 				for (PromiseListener<T> listener : _allListeners) {
 					reactToListener(listener, state);
 				}
-				_allListeners.clear();
-
-				_state = state;
-
-				_returnable = null;
-
-				_exception = exception;
-
-				_complete = true;
 			} else {
 				return;
 			}
@@ -52,7 +48,7 @@ public class Promise<T> {
 	}
 
 	// Something happened! Yay!
-	//TODO: Refactor.
+	// TODO: Refactor. This is ugly.
 	private void reactToListener(PromiseListener<T> currentListener, int state) {
 
 		if (state == PROMISE_FINISHED) {
@@ -75,4 +71,32 @@ public class Promise<T> {
 		return _allListeners.size() > 0;
 	}
 
+	// Okay so now what we WANT To happen, is that when we strap a listener to
+	// promise, its going to wait for a call. But if the promise has already
+	// completed? Then we go through the finish process.
+	public <TypedPromiseListener extends PromiseListener<T>> TypedPromiseListener add(
+			TypedPromiseListener newListener) {
+		if (_complete) {
+			// This is neato:
+			// If the promise is done, and we try to listen to it, we'll return
+			// the final results
+			reactToListener(newListener, _state);
+		} else {
+			_allListeners.add(newListener);
+		}
+
+		return newListener;
+	}
+
+	public void finish(T result) {
+		finishPromise(PROMISE_FINISHED, result, null);
+	}
+
+	public void fail(Exception e) {
+		finishPromise(PROMISE_FAILED, null, e);
+	}
+
+	public void cancel() {
+		finishPromise(PROMISE_CANCELLED, null, null);
+	}
 }
