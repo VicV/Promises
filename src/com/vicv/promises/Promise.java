@@ -1,6 +1,6 @@
 package com.vicv.promises;
 
-public class Promise<T> extends PromiseInterface {
+public class Promise<T> extends PromiseStub {
 
 	public final int PROMISE_FINISHED = 0;
 	public final int PROMISE_FAILED = 1;
