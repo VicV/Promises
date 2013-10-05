@@ -43,4 +43,9 @@ public class PromiseListener<T> {
 
 	}
 
+	// Different than succeeded. Basically this is so the listener will know its safe to get rid of this.
+	public void completed() {
+
+	}
+
 }
