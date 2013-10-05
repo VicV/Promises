@@ -13,6 +13,8 @@ Luckily, in my last few weeks there I had to work with their implementation a bu
 
 But, I just remember how it _works_. I don't remember their implementation at all..
 
+Notes: I'm doing this mainly because at Kik, the implentation was far more beautiful than any others available. For people that aren't deep into java but do Android dev, this will be the easiest way for them to add promises. Plus, when the promise is an object, you get to have wayyy more fun. Passing around threads like candy? Yeah, think about it.
+
 ###What I want it to do
 
 basically what SHOULD happen is:
@@ -34,13 +36,8 @@ Because I don't feel like learning an entirely new language just for one functio
 And, Im doing this for its _simplicity_. Is just a new Object type. You don't need to know how it works. Its _so_ straightforward.
 
 
-        
 
 
-So... Here goes nothing.
-
-
-Notes: I'm doing this mainly because at Kik, the implentation was far more beautiful than any others available. For people that aren't deep into java but do Android dev, this will be the easiest way for them to add promises. Plus, when the promise is an object, you get to have wayyy more fun. Passing around threads like candy? Yeah, think about it.
 
 ##Progress
 
