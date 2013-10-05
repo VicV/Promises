@@ -34,19 +34,41 @@ public class Promise<T> {
 			if (!_complete) {
 
 				for (PromiseListener<T> listener : _allListeners) {
-					// uhh I think we need to execute our callbacks finally
-					// here?
+					reactToListener(listener, state);
 				}
 				_allListeners.clear();
 
 				_state = state;
+
 				_returnable = null;
+
 				_exception = exception;
+
 				_complete = true;
 			} else {
 				return;
 			}
 		}
+	}
+
+	// Something happened! Yay!
+	//TODO: Refactor.
+	private void reactToListener(PromiseListener<T> currentListener, int state) {
+
+		if (state == PROMISE_FINISHED) {
+			currentListener.succeeded(_returnable);
+			currentListener.succeeded();
+		} else if (state == PROMISE_FAILED) {
+			currentListener.failed(_exception);
+			currentListener.failed();
+			currentListener.failedOrCancelled(_exception);
+			currentListener.failedOrCancelled();
+		} else if (state == PROMISE_CANCELLED) {
+			currentListener.cancelled();
+			currentListener.failedOrCancelled(_exception);
+			currentListener.failedOrCancelled();
+		}
+
 	}
 
 	public boolean hasListeners() {
