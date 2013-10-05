@@ -5,7 +5,9 @@ My attempt at functional java, at MITHacks
 
 
 
-So, the things I am doing are based off of memory from an implemetation of something similar at Kik.
+So, the things I am doing are based off of memory from an implemetation of something similar at Kik (meaning that I really don't think I deserve to win anything because this is something that already exists and there are alternatives.)
+
+Also, Kik, open source that stuff, my implementation is gonna be terribad.
 
 Luckily, in my last few weeks there I had to work with their implementation a bunch so I think I know how to do this.
 
@@ -22,6 +24,14 @@ basically what SHOULD happen is:
               //dostuff
             }
         }
+        
+        
+So, for those that use Javascript (or any other functional language), you'll know that callbacks are beautiful, useful, and amazing. I wanted to bring the simplicity of them to Java.
+
+###Why not scala?
+Because I don't feel like learning an entirely new language just for one functional feature? Plus, I'm an Android dev, and Scala + android is _really_ cool but not quite where it needs to be.
+
+And, Im doing this for its _simplicity_. Is just a new Object type. You don't need to know how it works. Its _so_ straightforward.
 
 
         
