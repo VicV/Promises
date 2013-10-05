@@ -35,7 +35,7 @@ public class PromiseListener<T> {
 	}
 
 	// Woo everything looks good.
-	public void succeeded(T returnable) {
+	public void succeeded(T result) {
 
 	}
 

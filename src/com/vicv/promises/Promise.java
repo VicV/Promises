@@ -2,14 +2,12 @@ package com.vicv.promises;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Promise<T> {
 
-	public final int PROMISE_FINISHED = 0;
-	public final int PROMISE_FAILED = 1;
-	public final int PROMISE_CANCELLED = 2;
-	public final int PROMISE_NOT_DONE = 3;
+	public enum State {
+		finished, failed, cancelled, notDone
+	}
 
 	// We're gonna strap listeners to every promise we make. So we can keep
 	// track of them here. So many threads!
@@ -19,10 +17,10 @@ public class Promise<T> {
 	private Object _completionLock = new Object();
 
 	// The thing we give back!
-	private T _returnable;
+	private T _result;
 
 	// State yo
-	private int _state = PROMISE_NOT_DONE;
+	private State _state = State.notDone;
 
 	// Whether or not this promise is done
 	private boolean _complete = false;
@@ -31,22 +29,21 @@ public class Promise<T> {
 	private Exception _exception;
 
 	// Clear up the promisess!
-	private void finishPromise(int state, T returnable, Exception exception) {
-		
+	private void finishPromise(State state, T returnable, Exception exception) {
+
 		List<PromiseListener<T>> listeners = new ArrayList<>(_allListeners);
-		
+
 		synchronized (_completionLock) {
 			if (!_complete) {
 				_allListeners.clear();
 				_state = state;
 				_exception = exception;
 				_complete = true;
-				_returnable = returnable;
+				_result = returnable;
 			} else {
 				return;
 			}
 		}
-		
 
 		for (PromiseListener<T> listener : listeners) {
 			reactToListener(listener, state);
@@ -55,20 +52,24 @@ public class Promise<T> {
 
 	// Something happened! Yay!
 	// TODO: Refactor. This is ugly.
-	private void reactToListener(PromiseListener<T> currentListener, int state) {
+	private void reactToListener(PromiseListener<T> currentListener, State state) {
 
-		if (state == PROMISE_FINISHED) {
-			currentListener.succeeded(_returnable);
+		switch (state) {
+		case finished:
+			currentListener.succeeded(_result);
 			currentListener.succeeded();
-		} else if (state == PROMISE_FAILED) {
+			break;
+		case failed:
 			currentListener.failed(_exception);
 			currentListener.failed();
 			currentListener.failedOrCancelled(_exception);
 			currentListener.failedOrCancelled();
-		} else if (state == PROMISE_CANCELLED) {
+			break;
+		case cancelled:
 			currentListener.cancelled();
 			currentListener.failedOrCancelled(_exception);
 			currentListener.failedOrCancelled();
+			break;
 		}
 
 	}
@@ -95,14 +96,14 @@ public class Promise<T> {
 	}
 
 	public void finish(T result) {
-		finishPromise(PROMISE_FINISHED, result, null);
+		finishPromise(State.finished, result, null);
 	}
 
 	public void fail(Exception e) {
-		finishPromise(PROMISE_FAILED, null, e);
+		finishPromise(State.failed, null, e);
 	}
 
 	public void cancel() {
-		finishPromise(PROMISE_CANCELLED, null, null);
+		finishPromise(State.cancelled, null, null);
 	}
 }

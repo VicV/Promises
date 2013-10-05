@@ -5,24 +5,19 @@ import com.vicv.promises.PromiseListener;
 
 public class PromiseTests {
 
-
 	public static void main(String[] args) {
 		
 		Promise<Integer> myPromise = new Promise<Integer>();
 		
 		myPromise.add(new PromiseListener<Integer>(){
+			
 			@Override
 			public void succeeded(Integer returnable) {
 			
 				System.out.print(returnable);
 				
-				super.succeeded(returnable);
 			}
 			
-			@Override
-			public void failed() {
-				super.failed();
-			}
 		});
 		
 		lateAdder(5, 6, myPromise);
@@ -36,4 +31,12 @@ public class PromiseTests {
 		c.finish(d);
 	}
 	
+	
+	private static void newFunct(){
+		
+		Promise<Object> promise = new Promise<Object>();
+		promise.add(new PromiseListener<Object>(){
+			
+		});
+	}
 }
