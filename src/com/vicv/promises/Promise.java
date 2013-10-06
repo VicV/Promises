@@ -70,12 +70,22 @@ public class Promise<T> {
 			currentListener.failedOrCancelled(_exception);
 			currentListener.failedOrCancelled();
 			break;
+		default:
+			break;
 		}
 
 	}
 
 	public boolean hasListeners() {
 		return _allListeners.size() > 0;
+	}
+
+	public Exception getException() {
+		return _exception;
+	}
+
+	public T getResult() {
+		return _result;
 	}
 
 	// Okay so now what we WANT To happen, is that when we strap a listener to
@@ -95,6 +105,7 @@ public class Promise<T> {
 		return newListener;
 	}
 
+	// Resolving them
 	public void finish(T result) {
 		finishPromise(State.finished, result, null);
 	}
@@ -106,4 +117,19 @@ public class Promise<T> {
 	public void cancel() {
 		finishPromise(State.cancelled, null, null);
 	}
+
+	// Tracking them
+
+	public boolean isFinished() {
+		return _state == State.finished;
+	}
+
+	public boolean isCancelled() {
+		return _state == State.cancelled;
+	}
+
+	public boolean hasFailed() {
+		return _state == State.failed;
+	}
+
 }

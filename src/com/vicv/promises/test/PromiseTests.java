@@ -35,8 +35,18 @@ public class PromiseTests {
 	private static void newFunct(){
 		
 		Promise<Object> promise = new Promise<Object>();
+		
 		promise.add(new PromiseListener<Object>(){
+			@Override
+			public void succeeded(Object result) {
+				//...
+			}
 			
+			@Override
+			public void failed(Exception reason) {
+				//...
+			}
+			//you can also override cancelled, done, and failedOrCancelled
 		});
 	}
 }
