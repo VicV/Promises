@@ -132,3 +132,5 @@ Update 2: So, the listener will look out for these events: Failed, Cancelled, (a
 Update 3: It works! I'm killing memory with all the promises laying around though.
 
 Update 4: Cleaned up some code. About to get into some neat stuff like timeout promises and whatnot. Yay!
+
+Update 5: I added timeouts and some quick unit tests.
