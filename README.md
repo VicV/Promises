@@ -5,6 +5,8 @@ My attempt at functional java, at MITHacks
 
 There are of course many implementations of Promises in Java. However, I don't like them. 
 
+Also, Im making this off of my memory of how a place I used to work does it. Kind of reverse engineering it. 
+
 This was a test of whether or not I could actually MAKE this, and of course whether I could bring functional coding functionality to a non-functional language in a way such that people (such as android devs) that do NOT use functional languages can have the benefits in an easy to understand way.
 
 So, an example of using this Library for promises:
