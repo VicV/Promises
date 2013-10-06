@@ -129,6 +129,11 @@ Possible applications
  * Caching
  * Lazyloading
  * Like, these are callbacks, use them for everything. Even my timeout USES promises to act as a timeout.
+ 
+Promises are used so we don't block any threads while performing a task. 
+
+For example, as seen in [Alerta](https://github.com/ajwootto/alerta) (which is a hack at hackMIT that actually makes use of this library)..
+
 
 ###Why not Scala?
 Because I don't feel like learning an entirely new language just for one functional feature? Plus, I'm an Android dev, and Scala + android is _really_ cool but not quite where it needs to be.
