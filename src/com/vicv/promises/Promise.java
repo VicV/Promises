@@ -2,9 +2,16 @@ package com.vicv.promises;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+import com.vicv.promises.util.PromiseUtils;
 
 public class Promise<T> {
-
+	
 	public enum State {
 		finished, failed, cancelled, notDone
 	}
@@ -109,6 +116,10 @@ public class Promise<T> {
 	public void finish(T result) {
 		finishPromise(State.finished, result, null);
 	}
+	
+	public void finish() {
+		finishPromise(State.finished, null, null);
+	}
 
 	public void fail(Exception e) {
 		finishPromise(State.failed, null, e);
@@ -129,6 +140,30 @@ public class Promise<T> {
 
 	public boolean hasFailed() {
 		return _state == State.failed;
+	}
+	
+	public void timeout(int millis) {
+		
+		final ScheduledFuture<?> futureTask = PromiseUtils.getWorkerService().schedule(new Runnable() {
+
+			@Override
+			public void run() {
+				getPromise().fail(new TimeoutException());
+			}
+		}, millis, TimeUnit.MILLISECONDS);
+
+		
+		 add(new PromiseListener<T>() {
+			 @Override
+			public void completed() {
+				futureTask.cancel(true);
+			}
+		 });
+		
+	}
+	
+	private Promise<T> getPromise(){
+		return this;
 	}
 
 }
