@@ -124,7 +124,11 @@ The beauty of it though is that you don't have to finish your promise now. You c
 
 I dunno? Its cool having callbacks. I would mainly use this for Android though.
 
-I'll get back to you on that, but I assure you its worth it. Once I get more stuff together I'll explain why you should use it.
+Possible applications
+ * HTTP requests
+ * Caching
+ * Lazyloading
+ * Like, these are callbacks, use them for everything. Even my timeout USES promises to act as a timeout.
 
 ###Why not Scala?
 Because I don't feel like learning an entirely new language just for one functional feature? Plus, I'm an Android dev, and Scala + android is _really_ cool but not quite where it needs to be.
