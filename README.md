@@ -73,7 +73,7 @@ Okay so for an example:
 				//...
 			}
 			
-			//you can also override cancelled, done, and faildOrCancelled
+			//you can also override cancelled, done, and failedOrCancelled
 		});
 		
 ###Resolving a promise
