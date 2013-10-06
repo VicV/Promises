@@ -119,7 +119,6 @@ public class Promise<T> {
 	}
 
 	// Tracking them
-
 	public boolean isFinished() {
 		return _state == State.finished;
 	}

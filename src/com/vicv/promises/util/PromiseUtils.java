@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import com.vicv.promises.Promise;
+import com.vicv.promises.PromiseListener;
 
 public class PromiseUtils {
 
@@ -22,6 +23,7 @@ public class PromiseUtils {
 	public static <T> Promise<T> timeoutPromise(
 			final Promise<T> initialPromise, int millis) {
 
+		Promise<T> failingPromise = initialPromise;
 
 		 futureTask = worker.schedule(new Runnable() {
 
@@ -30,6 +32,17 @@ public class PromiseUtils {
 				initialPromise.fail(new TimeoutException());
 			}
 		}, millis, TimeUnit.MILLISECONDS);
+		 
+		 //MPRoberts, this can't be how you do it, if you read this, please help me :(
+
+		 //Essentially we dont wanna fail the promise if the promise already completed
+		 //old: just fail after the given time, regardless of the old state
+		 failingPromise.add(new PromiseListener<T>() {
+			 @Override
+			public void completed() {
+				futureTask.cancel(true);
+			}
+		 });
 
 		return initialPromise;
 	}
