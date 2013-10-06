@@ -1,5 +1,5 @@
-Promises
-========
+Promises (for Java) and other functional things
+================================================
 
 My attempt at functional java, at HackMIT. Not using any APIs or anything for a prize, just having fun.
 
