@@ -95,6 +95,22 @@ If your fail or cancel your promise, it will automatically also hit failedOrCanc
 
 So, if you do a .finish(), it calls your promise's succeed callback, and so on and so forth for fail/cancel.
 
+## BUT WAIT, what is a promise anyway?
+
+So, its a callback but fancier. If you're asking what a promise is, this is perfect for you so I wont go into the technical detail of what a promise is.
+
+Essentially, you are promising something that you will finish it later. Lets say you make your friend a promise that if you ever discover what the king of norway's shoes look like, you will paint your hat blue.
+
+So, you have created a promise, and you have a 'success' action (painting your hat blue). This success action is what the success _callback_ is. 
+
+The beauty of it though is that you don't have to finish your promise now. You can fulfill this promise years in the future so long as you remember it (ie, store it in a map).
+
+
+## WHY WOULD I EVEN USE THIS, MAN
+
+I dunno? Its cool having callbacks. I would mainly use this for Android though.
+
+I'll get back to you on that, but I assure you its worth it.
 
 ###Why not scala?
 Because I don't feel like learning an entirely new language just for one functional feature? Plus, I'm an Android dev, and Scala + android is _really_ cool but not quite where it needs to be.
