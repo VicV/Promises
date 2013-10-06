@@ -1,9 +1,9 @@
 Promises
 ========
 
-My attempt at functional java, at HackMIT
+My attempt at functional java, at HackMIT. Not using any APIs or anything for a prize, just having fun.
 
-There are of course many implementations of Promises in Java. However, I don't like them. 
+There are of course many implementations of Promises in Java (jdeffered, functionaljava). However, I don't like them. 
 
 Also, Im making this off of my memory of how a place I used to work does it. Kind of reverse engineering it. 
 
@@ -26,6 +26,8 @@ So, an example of using this Library for promises:
 			
 			//you can also override cancelled, done, and faildOrCancelled
 		});
+
+Obviously, you dont need to override things you arent using.
 
 As I had said before, there are alternatives.
 
@@ -51,7 +53,7 @@ A very popular promise / deferred library [jDeferred](http://jdeferred.org/) has
                 }
         });
 
-Using this Promises library, we can actually add multiple listeners to the promise, and they all get triggered during an event on the promise.
+Using my Promises library over this, we can actually add multiple listeners to the promise, and they all get triggered during an event on the promise.
 Also, this method of adding listeners means that you can actually add a listener to a previously resolved Promise, and it will give you what you want. 
 
 ##HOW DO
@@ -112,7 +114,7 @@ The beauty of it though is that you don't have to finish your promise now. You c
 
 I dunno? Its cool having callbacks. I would mainly use this for Android though.
 
-I'll get back to you on that, but I assure you its worth it.
+I'll get back to you on that, but I assure you its worth it. Once I get more stuff together I'll explain why you should use it.
 
 ###Why not scala?
 Because I don't feel like learning an entirely new language just for one functional feature? Plus, I'm an Android dev, and Scala + android is _really_ cool but not quite where it needs to be.
@@ -128,3 +130,5 @@ Update 1: So far, I've created the general listener and an interface for promise
 Update 2: So, the listener will look out for these events: Failed, Cancelled, (and failedOrCancelled for the lazy), and succeed. 
 
 Update 3: It works! I'm killing memory with all the promises laying around though.
+
+Update 4: Cleaned up some code. About to get into some neat stuff like timeout promises and whatnot. Yay!
