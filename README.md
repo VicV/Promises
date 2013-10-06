@@ -1,7 +1,7 @@
 Promises
 ========
 
-My attempt at functional java, at MITHacks
+My attempt at functional java, at HackMIT
 
 There are of course many implementations of Promises in Java. However, I don't like them. 
 
