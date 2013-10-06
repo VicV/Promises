@@ -76,6 +76,8 @@ Okay so for an example:
 			//you can also override cancelled, done, and faildOrCancelled
 		});
 		
+###Resolving a promise
+		
 And to resolve:
 
         promise.finish();
@@ -99,6 +101,14 @@ If your fail or cancel your promise, it will automatically also hit failedOrCanc
 
 So, if you do a .finish(), it calls your promise's succeed callback, and so on and so forth for fail/cancel.
 
+### Timeouts
+
+You can also force a promise to timeout by simply doing 
+
+	promise.timeout(milliseconds);
+	
+And after that time, the promise will automatically fail. However, the timeout will not fail the promise if the promise is resolved within that time.
+
 ## BUT WAIT, what is a promise anyway?
 
 So, its a callback but fancier. If you're asking what a promise is, this is perfect for you so I wont go into the technical detail of what a promise is.
@@ -116,7 +126,7 @@ I dunno? Its cool having callbacks. I would mainly use this for Android though.
 
 I'll get back to you on that, but I assure you its worth it. Once I get more stuff together I'll explain why you should use it.
 
-###Why not scala?
+###Why not Scala?
 Because I don't feel like learning an entirely new language just for one functional feature? Plus, I'm an Android dev, and Scala + android is _really_ cool but not quite where it needs to be.
 
 And, Im doing this for its _simplicity_. Is just a new Object type. You don't need to know how it works. Its _so_ straightforward.
