@@ -33,3 +33,17 @@ uploadArchives {
     }
 }
 
+task clearJar(type: Delete) {
+    delete 'release/promises.jar'
+}
+
+task makeJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('release/')
+    include('classes.jar')
+    rename('classes.jar', 'promises.jar')
+}
+
+
+makeJar.dependsOn(clearJarR, build)
+
