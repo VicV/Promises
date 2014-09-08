@@ -1,12 +1,13 @@
-package com.vicv.promises;
+package com.vicvu.promises;
+
+
+import com.vicvu.promises.util.PromiseUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
-import com.vicv.promises.util.PromiseUtils;
 
 public class Promise<T> {
 	
