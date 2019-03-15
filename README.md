@@ -56,7 +56,7 @@ A very popular promise / deferred library [jDeferred](http://jdeferred.org/) has
 Using my Promises library over this, we can actually add multiple listeners to the promise, and they all get triggered during an event on the promise.
 Also, this method of adding listeners means that you can actually add a listener to a previously resolved Promise, and it will give you what you want. 
 
-##HOW DO
+## HOW TO USE
 
 Okay so for an example:
 
@@ -76,7 +76,7 @@ Okay so for an example:
 			//you can also override cancelled, done, and failedOrCancelled
 		});
 		
-###Resolving a promise
+### Resolving a promise
 		
 And to resolve:
 
@@ -142,7 +142,7 @@ And, Im doing this for its _simplicity_. Is just a new Object type. You don't ne
 
 
 
-##Progress
+## Progress
 
 Update 1: So far, I've created the general listener and an interface for promises. The first commit will be chunky because I didnt have wifi for a while.
 
